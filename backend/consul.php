@@ -8,6 +8,7 @@ session_start();
 if (empty($_SESSION["authenticated"]) || $_SESSION["authenticated"] != 'true') {
     header('Location: login.php');
 }
+
 $userRights = (string)$_SESSION['rights'];
 $calledUrl = "$_SERVER[REQUEST_URI]";
 
@@ -26,69 +27,75 @@ $autoText = $_SESSION["auto"] ? "automatically" : "";;
 <head>
     <meta charset="UTF-8">
     <title id="pageTitle"></title>
-
+    <link rel="shortcut icon" type="image/png" href="<?php echo $calledLoc; ?>lib/favicon.png"/>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link rel="stylesheet" href="<?php echo $calledLoc; ?>lib/css/tree.css"/>
     <link rel="stylesheet" href="<?php echo $calledLoc; ?>lib/themes/default/style.min.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-    <link rel="shortcut icon" type="image/png" href="<?php echo $calledLoc; ?>lib/_favicon.png"/>
+    <link rel="stylesheet" href="<?php echo $calledLoc; ?>lib/css/tree.css"/>
     <script src="<?php echo $calledLoc; ?>lib/js/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
     <script src="<?php echo $calledLoc; ?>lib/js/jstree.js"></script>
 </head>
 <body>
-
 <nav class="navbar navbar-light bg-light fixed-top navbar-expand-sm">
-    <div class="container"> <a class="navbar-brand" href="#" id="consulTitleID"></a>
-        <form class="form-inline ml-auto"
+    <div class="container">
+        <a class="navbar-brand" href="#" id="consulTitleID"></a>
+        <form class="form-inline"
               action="<?php echo $backendStatus; ?>logout.php">
-            <p class="navbar-text ml-auto">Consul locations</p>
-
             <div class="form-group">
-                <select class="form-control" id="consulUrlSelectorId" title="Consul-Urls"></select>
+                <label for="consulUrlSelectorId">Consul locations</label>
             </div>
-            <button type="button" class="btn btn-secondary" aria-label="Left Align"
-                    id="resetLocationBtnId" data-toggle="tooltip" data-placement="bottom" title="Reset consul location settings"> <span class="fa fa-refresh" aria-hidden="true"></span>
-            </button>
-            <button class="btn btn-danger" data-toggle="tooltip" data-placement="bottom"
-                    title="Logged in <?php echo $autoText; ?> as <?php echo $_SESSION['username']; ?>">Logout
+            <div class="col-auto">
+                <select class="form-control" id="consulUrlSelectorId" title="Consul-Urls"></select>
+                <button class="btn btn-dark" id="resetLocationBtnId" data-toggle="tooltip" data-placement="bottom" title="Reset consul location settings"><span class="fa fa-refresh" aria-hidden="true"></span></button>
+                <button class="btn btn-danger" data-toggle="tooltip" data-placement="bottom"
+                        title="Logged in <?php echo $autoText; ?> as <?php echo $_SESSION['username']; ?>">Logout</button>
+            </div>
         </form>
     </div>
 </nav>
 <div class="container">
-    <div class="page-header">
-        <form class="">
+    <div class="row">
+        <div class="col padded-right-middle">
+                <div class="form-group">
+
+                <label class="sr-only" for="searchInputId">Search</label>
+                <input id="searchInputId" value="" class="form-control search-box"
+                       placeholder="Search" style="margin:0 auto 1em auto; "> <span id="searchClear" class="fa fa-search"></span>
+            </div>
+        </div>
+        <div class="col">
             <div class="form-group">
-                <div class="col-md-5 padded-right-middle" style="width:505px">
-                    <label class="sr-only" for="searchInputId">Search</label>
-                    <input id="searchInputId" value="" class="form-control search-box"
-                           placeholder="Search" style="margin:0 auto 1em auto;  padding:4px;"> <span id="searchClear" class="glyphicon glyphicon-search"></span>
-                </div>
                 <button type="button" id="importExportBtnId" class="btn btn-primary writeACL"
-                        disabled data-toggle="modal" data-target="#importExportModalId">Import</button>
-                <button type="button" class="btn btn-warning readACL" disabled
-                        id="enableExportBtnId">Enable Export</button>
-                <button type="button" class="btn btn-info hidden readACL"
-                        disabled id="disableManualExport">Disable Export</button>
-                <button type="button" class="btn btn-success hidden readACL"
-                        disabled id="exportSelection">Export Selection</button>
-                <button type="button" class="btn btn-primary writeACL"
-                        disabled id="createRootBtnId">Create Folder / Key</button>
+                            disabled data-toggle="modal" data-target="#importExportModalId">
+                    Import</button>
+                <button type="button" class="btn btn-warning readACL" disabled id="enableExportBtnId">
+                    Enable Export</button>
+                <button type="button" class="btn btn-info hidden readACL" disabled id="disableManualExport">
+                    Disable Export</button>
+                <button type="button" class="btn btn-success hidden readACL" disabled id="exportSelection">
+                    Export Selection</button>
+                <button type="button" class="btn btn-primary writeACL" disabled id="createRootBtnId">
+                    Create Folder / Key</button>
             </div>
-        </form>
+        </div>
     </div>
-    <div id="ConsulTree" class="card bg-light card-body mb-3 col-lg-5"></div>
-    <div class="border-left" id="generalValueAreaID" style="position: fixed; width: 568px; padding-left: 15px">
-        <div id="keyValueFieldsid" class="card">
-            <div class="card-header" style="padding: 5px 15px !important;">
-                <h5></h5>
-            </div>
-            <div class="card-body"> <span id="createElementText" style="color: #737373" class="readACL">Select a key to get its value<span class="writeACL">, right-click on the tree to create an element</span>.</span>
-                <div class="form-group update-control">
-                    <textarea class="form-control update-control hidden" id="cKeyValue" rows="8" readonly title="Value"></textarea>
+    <div class="row">
+        <div class="col">
+            <div id="ConsulTree" class="card bg-light card-body mb-3"></div>
+        </div>
+        <div class="col">
+            <div class="border-left" id="generalValueAreaID" style="position: fixed; width: 568px; padding-left: 15px">
+                <div id="keyValueFieldsid" class="card bg-light mb-3">
+                    <div class="card-header">sdfsdf</div>
+                    <div class="card-body"> <span id="createElementText" style="color: #737373" class="readACL">Select a key to get its value<span class="writeACL">, right-click on the tree to create an element</span>.</span>
+                        <div class="form-group update-control">
+                            <textarea class="form-control update-control hidden" id="cKeyValue" rows="8" readonly title="Value"></textarea>
+                        </div>
+                        <button type="button" disabled id="valueUpdateBtnId" class="btn btn-primary update-control hidden writeACL">Update</button> <span class="update-control hidden writeACL" style="color: #737373">&#xA0;&#xA0;To create an element, right-click on the tree.</span>
+                    </div>
                 </div>
-                <button type="button" disabled id="valueUpdateBtnId" class="btn btn-primary update-control hidden writeACL">Update</button> <span class="update-control hidden writeACL" style="color: #737373">&#xA0;&#xA0;To create an element, right-click on the tree.</span>
             </div>
         </div>
     </div>
@@ -97,9 +104,8 @@ $autoText = $_SESSION["auto"] ? "automatically" : "";;
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span>
-                </button>
-                <h4 class="modal-title"><strong>Create Folder / Key</strong></h4>
+                <h5 class="modal-title">Create Folder / Key</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
             </div>
             <div class="modal-body">
                 <form>
@@ -128,9 +134,8 @@ $autoText = $_SESSION["auto"] ? "automatically" : "";;
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span>
-                </button>
-                <h4 class="modal-title"><strong>Import Consul Data</strong></h4>
+                <h5 class="modal-title">Import Consul Data</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
             </div>
             <div class="modal-body">
                 <form>
@@ -152,9 +157,8 @@ $autoText = $_SESSION["auto"] ? "automatically" : "";;
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header modal-header-warning">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span>
-                </button>
-                <h4 class="modal-title"><strong>No Data</strong></h4>
+                <h5 class="modal-title">No Data</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
             </div>
             <div class="modal-body text-center">
                 <span><strong>No Data</strong> was found on Consul, either <strong>Create a folder at the root position</strong>, or <strong>Import</strong> an existing Tree form a previous export</span>
@@ -169,9 +173,8 @@ $autoText = $_SESSION["auto"] ? "automatically" : "";;
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header modal-header-danger">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span>
-                </button>
-                <h4 class="modal-title"><strong>No Connection</strong></h4>
+                <h5 class="modal-title">No Connection</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
             </div>
             <div class="modal-body text-center">
                 <span>Check the connection between the <strong>Consul-Tree</strong> and <strong
@@ -187,9 +190,8 @@ $autoText = $_SESSION["auto"] ? "automatically" : "";;
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span>
-                </button>
-                <h4 class="modal-title"><strong>Rename Node</strong></h4>
+                <h5 class="modal-title">Rename Node</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
             </div>
             <div class="modal-body">
                 <div class="form-group">
@@ -202,8 +204,7 @@ $autoText = $_SESSION["auto"] ? "automatically" : "";;
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" id="renameConfirmBtnId" data-type="rename" disabled class="btn btn-info">Rename
-                </button>
+                <button type="button" id="renameConfirmBtnId" data-type="rename" disabled class="btn btn-info">Rename</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
@@ -213,9 +214,8 @@ $autoText = $_SESSION["auto"] ? "automatically" : "";;
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span>
-                </button>
-                <h4 class="modal-title"><strong>Overwrite existing key values</strong></h4>
+                <h5 class="modal-title">Overwrite values</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
             </div>
             <div class="modal-body">
                 <span>
@@ -272,14 +272,17 @@ $autoText = $_SESSION["auto"] ? "automatically" : "";;
 <p class="hidden" id="userRights"></p>
 <p class="hidden" id="selectedNodeID"></p>
 <p class="hidden" id="gotNodeValue"></p>
-<footer id="pageFooter">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="pageFooter">
     <div class="container">
-        <p class="navbar-text navbar-lef">Consul-tree v6.7</p>
-        <ul class="nav navbar-nav navbar-right">
-            <li><a href="https://github.com/vagharsh/consul-tree">GitHub Project</a></li>
-        </ul>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <span class="navbar-text">Consul-tree v6.7</span>
+            </ul>
+            <a class="navbar-text" href="https://github.com/vagharsh/consul-tree" target="_blank">GitHub Project</a>
+        </div>
     </div>
-</footer>
+</nav>
+
 <script src="<?php echo $calledLoc; ?>lib/js/functions.js"></script>
 <script src="<?php echo $calledLoc; ?>lib/js/triggers.js"></script>
 <script>

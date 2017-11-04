@@ -67,7 +67,7 @@ if ($acl->autoCheck){
 <head>
     <title id="pageTitle"></title>
     <link href="lib/css/login.css" rel="stylesheet" >
-    <link href="lib/_favicon.png" rel="shortcut icon" type="image/png" />
+    <link href="lib/favicon.png" rel="shortcut icon" type="image/png" />
     <link href="lib/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>

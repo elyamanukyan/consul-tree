@@ -12,7 +12,7 @@ html {
 
 body {
     margin: 0 auto;
-    padding: 20px 10px;
+    padding: 60px 10px;
     /*
     font-size: 1.4em;
     */
@@ -20,12 +20,6 @@ body {
 
 body > .container {
     padding: 20px 15px 0;
-}
-
-h1 {
-    /*
-    font-size: 1.8em;
-    */
 }
 
 .hidden{
@@ -48,6 +42,7 @@ h1 {
 .jstree-container-ul {
     margin-right: 15px !important;
 }
+
 .modal-header-danger {
     color:#fff;
     padding:9px 15px;
@@ -60,6 +55,7 @@ h1 {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
+
 .modal-header-warning {
     color:#fff;
     padding:9px 15px;
@@ -72,6 +68,7 @@ h1 {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
+
 .modal-header-primary {
     color:#fff;
     padding:9px 15px;
@@ -84,30 +81,29 @@ h1 {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
+
 .modal-header-info {
-     color:#fff;
-     padding:9px 15px;
-     border-bottom:1px solid #eee;
-     background-color: #5bc0de;
-     -webkit-border-top-left-radius: 5px;
-     -webkit-border-top-right-radius: 5px;
-     -moz-border-radius-topleft: 5px;
-     -moz-border-radius-topright: 5px;
-     border-top-left-radius: 5px;
-     border-top-right-radius: 5px;
- }
+    color:#fff;
+    padding:9px 15px;
+    border-bottom:1px solid #eee;
+    background-color: #5bc0de;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
 #searchClear {
     position: absolute;
     right: 25px;
-    top: 0;
-    bottom: 0;
-    height: 26px;
+    top: 10px;
+    height: 17px;
     margin: auto;
     font-size: 14px;
     cursor: pointer;
     color: #ccc;
 }
-
 
 #pageFooter {
     background-color: #3a3f46;
@@ -122,4 +118,3 @@ h1 {
 #pageFooter a, #pageFooter p {
     color: #d2d1d1;
 }
-

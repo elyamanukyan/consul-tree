@@ -1,12 +1,11 @@
-# Consul-tree
+# Consul-tree 
+#### Bootstrap v4.0
 
 Tree representation of hashicorp/consul https://www.consul.io/, https://github.com/hashicorp/consul KV section.
 
 **Supported Methods:** Cut, Copy, Paste, Create, Delete, Rename, Duplicate.
 
-**Available Features:** Search, Import, Export, Copy - CUT - PASTE between Consuls.
-
-***Latest Features:*** *ACL (Access Control List) with authentication and authorization, based on a php file.*
+**Available Features:** Search, Import, Export, Copy - CUT - PASTE between Consuls - ACL (Access Control List).
 
 Demo
 ------
