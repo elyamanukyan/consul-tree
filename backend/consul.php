@@ -26,79 +26,69 @@ $autoText = $_SESSION["auto"] ? "automatically" : "";;
 <head>
     <meta charset="UTF-8">
     <title id="pageTitle"></title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="<?php echo $calledLoc; ?>lib/css/tree.css"/>
     <link rel="stylesheet" href="<?php echo $calledLoc; ?>lib/themes/default/style.min.css"/>
-    <link rel="stylesheet" href="<?php echo $calledLoc; ?>lib/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link rel="shortcut icon" type="image/png" href="<?php echo $calledLoc; ?>lib/_favicon.png"/>
     <script src="<?php echo $calledLoc; ?>lib/js/jquery-3.2.1.min.js"></script>
-    <script src="<?php echo $calledLoc; ?>lib/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
     <script src="<?php echo $calledLoc; ?>lib/js/jstree.js"></script>
 </head>
 <body>
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#" id="consulTitleID"></a>
-        </div>
-        <form class="navbar-form navbar-right" action="<?php echo $backendStatus; ?>logout.php">
+
+<nav class="navbar navbar-light bg-light fixed-top navbar-expand-sm">
+    <div class="container"> <a class="navbar-brand" href="#" id="consulTitleID"></a>
+        <form class="form-inline ml-auto"
+              action="<?php echo $backendStatus; ?>logout.php">
+            <p class="navbar-text ml-auto">Consul locations</p>
+
             <div class="form-group">
                 <select class="form-control" id="consulUrlSelectorId" title="Consul-Urls"></select>
             </div>
-            <button type="button" class="btn btn-default" aria-label="Left Align" id="resetLocationBtnId"
-                    data-toggle="tooltip" data-placement="bottom" title="Reset consul location settings">
-                <span class="glyphicon glyphicon-refresh"></span>
+            <button type="button" class="btn btn-secondary" aria-label="Left Align"
+                    id="resetLocationBtnId" data-toggle="tooltip" data-placement="bottom" title="Reset consul location settings"> <span class="fa fa-refresh" aria-hidden="true"></span>
             </button>
             <button class="btn btn-danger" data-toggle="tooltip" data-placement="bottom"
                     title="Logged in <?php echo $autoText; ?> as <?php echo $_SESSION['username']; ?>">Logout
-            </button>
         </form>
-        <p class="navbar-text navbar-right">Consul locations</p>
-
     </div>
 </nav>
 <div class="container">
     <div class="page-header">
-        <form class="form-horizontal">
+        <form class="">
             <div class="form-group">
-                <div class="col-sm-5 padded-right-middle" style="width:505px">
+                <div class="col-md-5 padded-right-middle" style="width:505px">
                     <label class="sr-only" for="searchInputId">Search</label>
-                    <input id="searchInputId" value="" class="form-control search-box" placeholder="Search"
-                           style="margin:0 auto 1em auto;  padding:4px;">
-                    <span id="searchClear" class="glyphicon glyphicon-search"></span>
+                    <input id="searchInputId" value="" class="form-control search-box"
+                           placeholder="Search" style="margin:0 auto 1em auto;  padding:4px;"> <span id="searchClear" class="glyphicon glyphicon-search"></span>
                 </div>
-                <button type="button" id="importExportBtnId" class="btn btn-primary writeACL" disabled
-                        data-toggle="modal"
-                        data-target="#importExportModalId">Import
-                </button>
-                <button type="button" class="btn btn-warning readACL" disabled id="enableExportBtnId">Enable Export
-                </button>
-                <button type="button" class="btn btn-info hidden readACL" disabled id="disableManualExport">Disable
-                    Export
-                </button>
-                <button type="button" class="btn btn-success hidden readACL" disabled id="exportSelection">Export
-                    Selection
-                </button>
-                <button type="button" class="btn btn-primary writeACL" disabled id="createRootBtnId">Create Folder /
-                    Key
-                </button>
+                <button type="button" id="importExportBtnId" class="btn btn-primary writeACL"
+                        disabled data-toggle="modal" data-target="#importExportModalId">Import</button>
+                <button type="button" class="btn btn-warning readACL" disabled
+                        id="enableExportBtnId">Enable Export</button>
+                <button type="button" class="btn btn-info hidden readACL"
+                        disabled id="disableManualExport">Disable Export</button>
+                <button type="button" class="btn btn-success hidden readACL"
+                        disabled id="exportSelection">Export Selection</button>
+                <button type="button" class="btn btn-primary writeACL"
+                        disabled id="createRootBtnId">Create Folder / Key</button>
             </div>
         </form>
     </div>
-    <div id="ConsulTree" class="well col-md-5"></div>
+    <div id="ConsulTree" class="card bg-light card-body mb-3 col-lg-5"></div>
     <div class="border-left" id="generalValueAreaID" style="position: fixed; width: 568px; padding-left: 15px">
-        <div id="keyValueFieldsid" class="panel panel-default">
-            <div class="panel-heading" style="padding: 5px 15px !important;"><h5></h5></div>
-            <div class="panel-body">
-                <span id="createElementText" style="color: #737373" class="readACL">Select a key to get its value<span
-                            class="writeACL">, right-click on the tree to create an element</span>.</span>
+        <div id="keyValueFieldsid" class="card">
+            <div class="card-header" style="padding: 5px 15px !important;">
+                <h5></h5>
+            </div>
+            <div class="card-body"> <span id="createElementText" style="color: #737373" class="readACL">Select a key to get its value<span class="writeACL">, right-click on the tree to create an element</span>.</span>
                 <div class="form-group update-control">
-                    <textarea class="form-control update-control hidden" id="cKeyValue" rows="8" readonly
-                              title="Value"></textarea>
+                    <textarea class="form-control update-control hidden" id="cKeyValue" rows="8" readonly title="Value"></textarea>
                 </div>
-                <button type="button" disabled id="valueUpdateBtnId"
-                        class="btn btn-primary update-control hidden writeACL">Update
-                </button>
-                <span class="update-control hidden writeACL" style="color: #737373">&nbsp;&nbsp;To create an element, right-click on the tree.</span>
+                <button type="button" disabled id="valueUpdateBtnId" class="btn btn-primary update-control hidden writeACL">Update</button> <span class="update-control hidden writeACL" style="color: #737373">&#xA0;&#xA0;To create an element, right-click on the tree.</span>
             </div>
         </div>
     </div>
