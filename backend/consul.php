@@ -238,7 +238,7 @@ $autoText = $_SESSION["auto"] ? "automatically" : "";;
     </div>
 </div>
 <div class="modal fade" id="processingMdlID" tabindex="-1" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header modal-header-primary" style="border-bottom: 0">
                 <p class="modal-title text-center">Processing your request, please wait...</p>
