@@ -48,7 +48,7 @@ $autoText = $_SESSION["auto"] ? "automatically" : "";;
             </div>
             <div class="col-auto">
                 <select class="form-control" id="consulUrlSelectorId" title="Consul-Urls"></select>
-                <button class="btn btn-dark" id="resetLocationBtnId" data-toggle="tooltip" data-placement="bottom" title="Reset consul location settings"><span class="fa fa-refresh" aria-hidden="true"></span></button>
+                <button class="btn btn-secondary" id="resetLocationBtnId" data-toggle="tooltip" data-placement="bottom" title="Reset consul location settings"><span class="fa fa-refresh" aria-hidden="true"></span></button>
                 <button class="btn btn-danger" data-toggle="tooltip" data-placement="bottom"
                         title="Logged in <?php echo $autoText; ?> as <?php echo $_SESSION['username']; ?>">Logout</button>
             </div>
@@ -57,12 +57,11 @@ $autoText = $_SESSION["auto"] ? "automatically" : "";;
 </nav>
 <div class="container">
     <div class="row">
-        <div class="col padded-right-middle">
-                <div class="form-group">
-
+        <div class="col">
+            <div class="form-group">
                 <label class="sr-only" for="searchInputId">Search</label>
                 <input id="searchInputId" value="" class="form-control search-box"
-                       placeholder="Search" style="margin:0 auto 1em auto; "> <span id="searchClear" class="fa fa-search"></span>
+                       placeholder="Search" style="margin:0 auto 1em auto"><span id="searchClear" class="fa fa-search"></span>
             </div>
         </div>
         <div class="col">
@@ -110,17 +109,16 @@ $autoText = $_SESSION["auto"] ? "automatically" : "";;
             <div class="modal-body">
                 <form>
                     <div class="form-group">
-                        <h5 class="control-label">Folder / Key Name : <i>To create a folder, end the
-                                key with /</i></h5>
+                        <h6>Folder / Key Name : <i>To create a folder, end the key with /</i></h6>
                         <input class="form-control" id="keyInputId" value="" title="Folder / Key Name">
                         <input type="hidden" class="form-control" id="pathInputId" value="">
                     </div>
                     <div class="form-group">
-                        <h5 class="control-label">Path : </h5>
+                        <h6 class="control-label">Path : </h6>
                         <textarea class="form-control" id="pathDescribeID" readonly title="Path"></textarea>
                     </div>
                 </form>
-                <h5 class="control-label inputKeyValueClass">Value : </h5>
+                <h6 class="control-label inputKeyValueClass">Value : </h6>
                 <textarea class="form-control inputKeyValueClass" id="inputKeyValueId" title="Value"></textarea>
             </div>
             <div class="modal-footer">
@@ -195,11 +193,11 @@ $autoText = $_SESSION["auto"] ? "automatically" : "";;
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <h5 class="control-label">Current node name: </h5>
+                    <h6 class="control-label">Current node name: </h6>
                     <input id="oldNodePathId" value="" class="form-control" title="Current node name" readonly>
                 </div>
                 <div class="form-group">
-                    <h5 class="control-label">New node name: </h5>
+                    <h6 class="control-label">New node name: </h6>
                     <input id="newNodePathId" value="" title="New node name" class="form-control">
                 </div>
             </div>
@@ -240,10 +238,10 @@ $autoText = $_SESSION["auto"] ? "automatically" : "";;
     </div>
 </div>
 <div class="modal fade" id="processingMdlID" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header modal-header-primary" style="border-bottom: 0">
-                <h5 class="modal-title text-center">Processing your request, please wait...</h5>
+                <p class="modal-title text-center">Processing your request, please wait...</p>
             </div>
             <div class="modal-body">
                 <div class="progress">
@@ -276,7 +274,7 @@ $autoText = $_SESSION["auto"] ? "automatically" : "";;
     <div class="container">
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto">
-                <span class="navbar-text">Consul-tree v6.7</span>
+                <span class="navbar-text">Consul-tree v6.7-v4</span>
             </ul>
             <a class="navbar-text" href="https://github.com/vagharsh/consul-tree" target="_blank">GitHub Project</a>
         </div>
