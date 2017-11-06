@@ -99,7 +99,7 @@ $autoText = $_SESSION["auto"] ? "automatically" : "";;
         </div>
     </div>
 </div>
-<div class="modal fade" id="createNodeModalId" tabindex="-1" role="dialog">
+<div class="modal" id="createNodeModalId" tabindex="-1" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -128,7 +128,7 @@ $autoText = $_SESSION["auto"] ? "automatically" : "";;
         </div>
     </div>
 </div>
-<div class="modal fade" id="importExportModalId" tabindex="-1" role="dialog">
+<div class="modal" id="importExportModalId" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header">
@@ -151,7 +151,7 @@ $autoText = $_SESSION["auto"] ? "automatically" : "";;
         </div>
     </div>
 </div>
-<div class="modal fade" id="noTreeModalId" tabindex="-1" role="dialog">
+<div class="modal" id="noTreeModalId" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header modal-header-warning">
@@ -167,7 +167,7 @@ $autoText = $_SESSION["auto"] ? "automatically" : "";;
         </div>
     </div>
 </div>
-<div class="modal fade" id="noConnectionModalId" tabindex="-1" role="dialog">
+<div class="modal" id="noConnectionModalId" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header modal-header-danger">
@@ -184,7 +184,7 @@ $autoText = $_SESSION["auto"] ? "automatically" : "";;
         </div>
     </div>
 </div>
-<div class="modal fade" id="renameModalId" tabindex="-1" role="dialog">
+<div class="modal" id="renameModalId" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
@@ -208,7 +208,7 @@ $autoText = $_SESSION["auto"] ? "automatically" : "";;
         </div>
     </div>
 </div>
-<div class="modal fade" id="overwriteModalId" tabindex="-1" role="dialog">
+<div class="modal" id="overwriteModalId" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
@@ -228,7 +228,7 @@ $autoText = $_SESSION["auto"] ? "automatically" : "";;
         </div>
     </div>
 </div>
-<div class="modal fade" id="connectingModalId" tabindex="-1" role="dialog">
+<div class="modal" id="connectingModalId" tabindex="-1" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
@@ -237,7 +237,7 @@ $autoText = $_SESSION["auto"] ? "automatically" : "";;
         </div>
     </div>
 </div>
-<div class="modal fade" id="processingMdlID" tabindex="-1" role="dialog">
+<div class="modal" id="processingMdlID" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header modal-header-primary" style="border-bottom: 0">
@@ -252,7 +252,7 @@ $autoText = $_SESSION["auto"] ? "automatically" : "";;
         </div>
     </div>
 </div>
-<div class="modal fade" id="loadingTreeMdlID" tabindex="-1" role="dialog">
+<div class="modal" id="loadingTreeMdlID" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header" style="border-bottom: 0">
